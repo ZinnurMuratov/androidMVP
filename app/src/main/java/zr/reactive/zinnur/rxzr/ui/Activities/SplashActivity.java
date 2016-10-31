@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import javax.inject.Inject;
-
-import zr.reactive.zinnur.rxzr.R;
-import zr.reactive.zinnur.rxzr.di.App;
+;
 import zr.reactive.zinnur.rxzr.di.modules.DaggerSplashViewComponent;
 import zr.reactive.zinnur.rxzr.di.modules.SplashViewComponent;
 import zr.reactive.zinnur.rxzr.di.modules.SplashViewModule;
@@ -52,6 +50,16 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
     @Override
     public void showError(String error) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
 
     }
 

@@ -24,14 +24,6 @@ public class SplashPresenter extends BasePresenter {
     }
 
     public SplashPresenter(SplashView view){
-        if (view == null){
-            Log.d("view", " is null");
-        }
-
-        if (this == null){
-            Log.d("presenter", " is null");
-        }
-
         App.getComponent().inject(this);
         this.view = view;
     }

@@ -1,6 +1,8 @@
 package zr.reactive.zinnur.rxzr.di;
 
 import android.app.Application;
+import android.util.Log;
+
 
 import zr.reactive.zinnur.rxzr.di.modules.ContextModule;
 
