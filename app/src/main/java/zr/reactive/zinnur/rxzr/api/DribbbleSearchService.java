@@ -18,20 +18,9 @@ import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
 
 public interface DribbbleSearchService {
     String ENDPOINT = "https://dribbble.com/";
-    String SORT_POPULAR = "";
-    String SORT_RECENT = "latest";
     int PER_PAGE_DEFAULT = 12;
 
     @GET("search")
     Observable<List<Shot>> search(@Query("q") String query);
 
-
-    /** magic constants **/
-
-    @Retention(RetentionPolicy.SOURCE)
-    @StringDef({
-            SORT_POPULAR,
-            SORT_RECENT
-    })
-    @interface SortOrder { }
 }

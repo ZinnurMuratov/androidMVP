@@ -39,29 +39,14 @@ public class ShotsPresenter extends BasePresenter {
     public void request(){
         getView().showLoading();
         Subscription subscription = model.getShots(getPage(),"popular")
-                .subscribe(shots -> view.updateAdapter(shots), e -> {
-                    getView().hideLoading();
-                    e.printStackTrace();
-                }, () -> {
-                    Log.d("dribbble", " success");
-                    getView().hideLoading();
-                });
+                .subscribe(shots -> view.updateAdapter(shots), e -> onError(e), () -> getView().hideLoading());
         addSubscription(subscription);
     }
 
     public void searchRequest(){
+        getView().showLoading();
         Subscription subscription = model.search("rockylabs")
-                .subscribe(shots -> {
-                    view.clearAdapter();
-                    view.updateAdapter(shots);
-                    Log.d("shot - ", " " + shots.get(0).getTitle());
-                }, e -> {
-                    getView().hideLoading();
-                    e.printStackTrace();
-                }, () -> {
-                    Log.d("dribbble", " success");
-                    getView().hideLoading();
-        });
+                .subscribe(this::onNextSearch, e -> onError(e), () -> getView().hideLoading());
         addSubscription(subscription);
     }
 
@@ -75,4 +60,15 @@ public class ShotsPresenter extends BasePresenter {
         Log.d("page ", " "+page);
         return page;
     }
+
+    public void onError(Throwable e){
+        getView().hideLoading();
+        e.printStackTrace();
+    }
+
+    public void onNextSearch(List<Shot> shots){
+        view.clearAdapter();
+        view.updateAdapter(shots);
+    }
+
 }
