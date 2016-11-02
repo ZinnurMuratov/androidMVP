@@ -1,21 +1,21 @@
 package zr.reactive.zinnur.rxzr.mvp.models;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import retrofit2.Callback;
 import rx.Observable;
 import rx.Scheduler;
 import zr.reactive.zinnur.rxzr.api.ApiInterface;
 import zr.reactive.zinnur.rxzr.api.DribbbleSearchService;
 import zr.reactive.zinnur.rxzr.api.DribbbleServices;
 import zr.reactive.zinnur.rxzr.di.App;
-import zr.reactive.zinnur.rxzr.mvp.models.dto.AbsDTO;
 import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
 import zr.reactive.zinnur.rxzr.mvp.models.dto.UserLoginResponseEntity;
-import zr.reactive.zinnur.rxzr.mvp.utils.AuthUtils;
+import zr.reactive.zinnur.rxzr.mvp.utils.InternetUtils;
+import zr.reactive.zinnur.rxzr.mvp.utils.prefs.AuthPrefs;
 import zr.reactive.zinnur.rxzr.other.Const;
 
 /**
@@ -59,6 +59,7 @@ public class ModelImpl implements Model {
 
     @Override
     public Observable<List<Shot>> getShots(int page, String sort) {
+        NullPointerException e = new NullPointerException();
         return dribbbleServices
                 .getShots(page, Const.PAGE, sort)
                 .compose(applySchedulers());
@@ -73,7 +74,7 @@ public class ModelImpl implements Model {
 
     @Override
     public void storeToken(String token) {
-        AuthUtils.setToken(token);
+        AuthPrefs.setToken(token);
     }
 
     @SuppressWarnings("unchecked")

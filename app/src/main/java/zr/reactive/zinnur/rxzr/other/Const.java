@@ -17,5 +17,7 @@ public interface Const {
     String LOGIN = "89370022713";
     String PASSWORD = "12345678";
 
+    String JSON_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
     int PAGE = 10;
 }

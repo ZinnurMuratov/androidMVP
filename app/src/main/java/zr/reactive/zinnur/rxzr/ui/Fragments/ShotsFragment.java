@@ -3,6 +3,7 @@ package zr.reactive.zinnur.rxzr.ui.Fragments;
 import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -66,6 +67,7 @@ public class ShotsFragment extends BaseFragment implements ShotsView{
         ButterKnife.bind(this,view);
         recyclerViewShots.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setOnRefreshListener(() -> presenter.onRefresh());
+        presenter.showCachedShots();
         presenter.request();
         return view;
     }
@@ -83,7 +85,7 @@ public class ShotsFragment extends BaseFragment implements ShotsView{
 
     @Override
     public void showError(String error) {
-
+        Snackbar.make(recyclerViewShots,error,Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -111,9 +113,7 @@ public class ShotsFragment extends BaseFragment implements ShotsView{
     public void initAdapter(List<Shot> shots) {
         adapter = new ShotsAdapter(shots);
         recyclerViewShots.setAdapter(adapter);
-        adapter.setLoadMoreListener(() -> {
-            presenter.request();
-        });
+        adapter.setLoadMoreListener(() -> presenter.request());
     }
 
     @Override

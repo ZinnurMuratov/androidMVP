@@ -2,15 +2,16 @@ package zr.reactive.zinnur.rxzr.mvp.presenters;
 
 import android.util.Log;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observer;
 import rx.Subscription;
 import zr.reactive.zinnur.rxzr.di.App;
 import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
 import zr.reactive.zinnur.rxzr.mvp.utils.PageUtil;
+import zr.reactive.zinnur.rxzr.mvp.utils.prefs.ShotsPrefs;
 import zr.reactive.zinnur.rxzr.mvp.views.ShotsView;
 import zr.reactive.zinnur.rxzr.mvp.views.View;
 
@@ -34,25 +35,28 @@ public class ShotsPresenter extends BasePresenter {
     public void onCreate(ShotsView view) {
         App.getComponent().inject(this);
         this.view = view;
+
     }
 
     public void request(){
         getView().showLoading();
         Subscription subscription = model.getShots(getPage(),"popular")
-                .subscribe(shots -> view.updateAdapter(shots), e -> onError(e), () -> getView().hideLoading());
+                .subscribe(this::onNextGetShots, this::onError, () -> getView().hideLoading());
         addSubscription(subscription);
     }
 
     public void searchRequest(){
         getView().showLoading();
         Subscription subscription = model.search("rockylabs")
-                .subscribe(this::onNextSearch, e -> onError(e), () -> getView().hideLoading());
+                .subscribe(this::onNextRefreshShots, this::onError, () -> getView().hideLoading());
         addSubscription(subscription);
     }
 
     public void onRefresh(){
-        view.clearAdapter();
-        request();
+        getView().showLoading();
+        Subscription subscription = model.getShots(getPage(),"popular")
+                .subscribe(this::onNextRefreshShots, this::onError, () -> getView().hideLoading());
+        addSubscription(subscription);
     }
 
     public int getPage(){
@@ -64,11 +68,27 @@ public class ShotsPresenter extends BasePresenter {
     public void onError(Throwable e){
         getView().hideLoading();
         e.printStackTrace();
+        if(e instanceof UnknownHostException) {
+            view.showError("Network connection unavailable");
+        }
     }
 
-    public void onNextSearch(List<Shot> shots){
+    public void onNextRefreshShots(List<Shot> shots){
         view.clearAdapter();
         view.updateAdapter(shots);
+    }
+
+    public void onNextGetShots(List<Shot> shots){
+        view.updateAdapter(shots);
+        ShotsPrefs.setShots(shots);
+    }
+
+
+    public void showCachedShots(){
+        List<Shot> shots = ShotsPrefs.getShots();
+        if (shots != null){
+            view.updateAdapter(shots);
+        }
     }
 
 }

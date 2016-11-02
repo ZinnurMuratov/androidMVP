@@ -1,5 +1,7 @@
 package zr.reactive.zinnur.rxzr.mvp.utils;
 
+import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
+import zr.reactive.zinnur.rxzr.mvp.utils.prefs.ShotsPrefs;
 import zr.reactive.zinnur.rxzr.other.Const;
 
 /**
@@ -10,7 +12,11 @@ public class PageUtil {
 
     public static int getPage(int shotCounts){
         int page = 0;
-        page = shotCounts / Const.PAGE;
+        int cachedPages = 0;
+        if (ShotsPrefs.getShots() != null){
+            cachedPages = 10;
+        }
+        page = (shotCounts - cachedPages) / Const.PAGE;
         return page + 1;
     }
 }

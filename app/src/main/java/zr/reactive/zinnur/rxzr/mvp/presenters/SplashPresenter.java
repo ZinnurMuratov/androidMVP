@@ -1,13 +1,12 @@
 package zr.reactive.zinnur.rxzr.mvp.presenters;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import javax.inject.Inject;
 
 import rx.Observable;
 import zr.reactive.zinnur.rxzr.di.App;
-import zr.reactive.zinnur.rxzr.mvp.utils.AuthUtils;
+import zr.reactive.zinnur.rxzr.mvp.utils.prefs.AuthPrefs;
 import zr.reactive.zinnur.rxzr.mvp.views.SplashView;
 
 /**
@@ -34,7 +33,7 @@ public class SplashPresenter extends BasePresenter {
     }
 
     public void checkAuthorized() {
-        final Observable<String> getTokenObservable = Observable.create(subscriber -> subscriber.onNext(AuthUtils.getToken()));
+        final Observable<String> getTokenObservable = Observable.create(subscriber -> subscriber.onNext(AuthPrefs.getToken()));
         getTokenObservable.subscribe(token -> {
             view.setAuthorized(!TextUtils.isEmpty(token));
         });
