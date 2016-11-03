@@ -10,8 +10,8 @@ import javax.inject.Inject;
 import rx.Subscription;
 import zr.reactive.zinnur.rxzr.di.App;
 import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
-import zr.reactive.zinnur.rxzr.mvp.utils.PageUtil;
-import zr.reactive.zinnur.rxzr.mvp.utils.prefs.ShotsPrefs;
+import zr.reactive.zinnur.rxzr.other.utils.PageUtil;
+import zr.reactive.zinnur.rxzr.other.utils.prefs.ShotsPrefs;
 import zr.reactive.zinnur.rxzr.mvp.views.ShotsView;
 import zr.reactive.zinnur.rxzr.mvp.views.View;
 

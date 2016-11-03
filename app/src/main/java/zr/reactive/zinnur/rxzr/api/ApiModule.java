@@ -10,7 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import zr.reactive.zinnur.rxzr.mvp.utils.OkHttpUtil;
+import zr.reactive.zinnur.rxzr.other.utils.OkHttpUtil;
 import zr.reactive.zinnur.rxzr.other.Const;
 
 /**

@@ -1,4 +1,4 @@
-package zr.reactive.zinnur.rxzr.mvp.utils;
+package zr.reactive.zinnur.rxzr.other.utils;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;

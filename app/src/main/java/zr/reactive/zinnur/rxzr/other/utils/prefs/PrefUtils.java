@@ -1,4 +1,4 @@
-package zr.reactive.zinnur.rxzr.mvp.utils.prefs;
+package zr.reactive.zinnur.rxzr.other.utils.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;

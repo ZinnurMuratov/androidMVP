@@ -1,4 +1,4 @@
-package zr.reactive.zinnur.rxzr.mvp.utils;
+package zr.reactive.zinnur.rxzr.other.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

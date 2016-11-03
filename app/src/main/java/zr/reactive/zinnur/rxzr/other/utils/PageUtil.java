@@ -1,7 +1,6 @@
-package zr.reactive.zinnur.rxzr.mvp.utils;
+package zr.reactive.zinnur.rxzr.other.utils;
 
-import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
-import zr.reactive.zinnur.rxzr.mvp.utils.prefs.ShotsPrefs;
+import zr.reactive.zinnur.rxzr.other.utils.prefs.ShotsPrefs;
 import zr.reactive.zinnur.rxzr.other.Const;
 
 /**

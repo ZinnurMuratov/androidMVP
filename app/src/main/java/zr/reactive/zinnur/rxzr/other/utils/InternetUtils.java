@@ -1,4 +1,4 @@
-package zr.reactive.zinnur.rxzr.mvp.utils;
+package zr.reactive.zinnur.rxzr.other.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

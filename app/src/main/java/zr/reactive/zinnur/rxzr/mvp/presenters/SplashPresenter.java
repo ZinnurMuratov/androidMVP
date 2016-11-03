@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import zr.reactive.zinnur.rxzr.di.App;
-import zr.reactive.zinnur.rxzr.mvp.utils.prefs.AuthPrefs;
+import zr.reactive.zinnur.rxzr.other.utils.prefs.AuthPrefs;
 import zr.reactive.zinnur.rxzr.mvp.views.SplashView;
 
 /**
