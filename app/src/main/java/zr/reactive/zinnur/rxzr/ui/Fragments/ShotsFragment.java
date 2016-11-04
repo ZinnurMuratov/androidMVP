@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
 import zr.reactive.zinnur.rxzr.mvp.presenters.Presenter;
 import zr.reactive.zinnur.rxzr.mvp.presenters.ShotsPresenter;
 import zr.reactive.zinnur.rxzr.mvp.views.ShotsView;
+import zr.reactive.zinnur.rxzr.other.utils.ShotUtils;
 import zr.reactive.zinnur.rxzr.ui.adapters.OnLoadMoreListener;
 import zr.reactive.zinnur.rxzr.ui.adapters.ShotsAdapter;
 
@@ -65,7 +67,7 @@ public class ShotsFragment extends BaseFragment implements ShotsView{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shots, container, false);
         ButterKnife.bind(this,view);
-        recyclerViewShots.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewShots.setLayoutManager(new GridLayoutManager(getContext(), ShotUtils.calculateNoOfColumns(getContext())));
         swipeRefreshLayout.setOnRefreshListener(() -> presenter.onRefresh());
         presenter.showCachedShots();
         presenter.request();
