@@ -6,7 +6,6 @@ import rx.Observer;
 import rx.Subscription;
 import zr.reactive.zinnur.rxzr.di.App;
 import zr.reactive.zinnur.rxzr.mvp.models.dto.UserLoginResponseEntity;
-import zr.reactive.zinnur.rxzr.mvp.presenters.mappers.AbsMapper;
 import zr.reactive.zinnur.rxzr.mvp.views.SignInView;
 import zr.reactive.zinnur.rxzr.mvp.views.View;
 import zr.reactive.zinnur.rxzr.other.Const;
@@ -17,8 +16,6 @@ import zr.reactive.zinnur.rxzr.other.Const;
 
 public class SignInPresenter extends BasePresenter {
 
-    @Inject
-    protected AbsMapper absMapper;
 
     private static String TAG = SignInPresenter.class.getSimpleName();
 

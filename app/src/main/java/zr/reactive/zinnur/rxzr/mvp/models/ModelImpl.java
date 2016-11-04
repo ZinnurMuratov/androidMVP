@@ -13,7 +13,6 @@ import zr.reactive.zinnur.rxzr.api.DribbbleServices;
 import zr.reactive.zinnur.rxzr.di.App;
 import zr.reactive.zinnur.rxzr.mvp.models.dto.Shot;
 import zr.reactive.zinnur.rxzr.mvp.models.dto.UserLoginResponseEntity;
-import zr.reactive.zinnur.rxzr.other.utils.InternetUtils;
 import zr.reactive.zinnur.rxzr.other.utils.prefs.AuthPrefs;
 import zr.reactive.zinnur.rxzr.other.Const;
 

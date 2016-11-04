@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 
+import com.squareup.leakcanary.LeakCanary;
+
 import zr.reactive.zinnur.rxzr.di.modules.ContextModule;
 
 /**
@@ -21,12 +23,17 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         component = buildComponent();
+        initLeakCanary();
     }
 
     protected AppComponent buildComponent() {
         return DaggerAppComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
+    }
+
+    private void initLeakCanary(){
+        LeakCanary.install(this);
     }
 
 }
